@@ -1,0 +1,28 @@
+.Landing {
+    position: absolute;
+    background-color: rgba(0,0,0,.95);
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+    
+    .container {
+        display: table-cell;
+        vertical-align: middle;
+        
+        height: 99vh;
+        width: 100vw;
+
+        padding: 0 5rem;
+        padding-bottom: 10rem;
+    }
+
+    .alert {
+        font-size: 1rem;
+        margin-top: 1rem;
+        padding: .5rem 1.25rem;
+    }
+
+    &.hide {
+        z-index: 0;
+    }
+}
