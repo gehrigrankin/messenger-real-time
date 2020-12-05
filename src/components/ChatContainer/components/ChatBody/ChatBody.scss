@@ -1,0 +1,13 @@
+.ChatBody {
+    position: absolute;
+    top: 120px;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    
+    overflow: scroll;
+    overflow-x: hidden;
+    
+    padding: .75rem;
+    background-color: #1e272c;
+}

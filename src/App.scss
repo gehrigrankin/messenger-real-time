@@ -1,84 +1,12 @@
 .App {
-  text-align: center;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-
-  .row {
-    height: 100vh;
-  }
-
+    text-align: center;
+    color: white;
 }
 
 .tabs {
-  width: 100vw;
-  height: 5vh;
+    height: 5vh;
+    position: absolute;
+    top: 0;
 
-  position: absolute;
-  top: 0;
-  
-  background-color: #1e272c;
-
-  .tab-1, .tab-2 {
-    color: white;
-    z-index: 4;
-    width: 50vw;
-    height: 100%;
-    border: 1px solid #37474f;
-    font-size: .75em;
-
-    p {
-      margin: .5rem auto;
-    }
-
-    &.active {
-      background-color: #039be5;
-    }
-  }
-
-  .tab-1 {
-    float: left;
-  }
-  .tab-2 {
-    float: right;
-  }
-}
-
-.user-icon {
-  text-align: center;
-  width: 48px;
-  margin:auto;
-  padding: 3px;
-  border-radius: 50%;
-  background-color: lightgray;
-
-  &.is-xl {
-    width: 39px;
-    padding: 0;
-    // margin: 0;
-
-    .fa-user {
-      font-size: x-large;
-    }
-  }
-  
-  &.is-xxl {
-    .fa-user {
-      font-size: xx-large;
-    }
-  }
-  
-  .fa-user {
-    margin: 5px;  
-  }
-}
-
-
-@media only screen and (max-width: 500px) {
-  
+    background-color: #1e272c;
 }

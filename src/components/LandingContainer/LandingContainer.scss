@@ -1,34 +1,83 @@
 .Landing {
+    color: grey;
+    font-size: 1.5rem;
     position: absolute;
-    background-color: rgba(0,0,0,.95);
-    height: 100%;
-    width: 100%;
-    z-index: 2;
-    
+    background-color: rgba(19, 24, 27, .95);
+
+    z-index: 1;
+
     .container {
         display: table-cell;
         vertical-align: middle;
         
-        height: 99vh;
+        height: 100vh;
         width: 100vw;
 
         padding: 0 5rem;
         padding-bottom: 10rem;
     }
+    
+    form {
+        position: relative;
+        max-width: 500px;
+        margin: auto;
 
-    .alert {
-        font-size: 1rem;
-        margin-top: 1rem;
-        padding: .5rem 1.25rem;
+        .form-control {
+            color: white;
+            border: 1px solid grey;
+            background-color: transparent;
+
+            :focus {
+                background-color: transparent;
+            }
+        }
+        
+        .alert {
+            position: absolute;
+            width: 100%;
+    
+            font-size: 1rem;
+            margin-top: 1rem;
+            padding: .5rem 1.25rem;
+        }
+
+        .btn {
+            background-color: #039be5;
+            border: 1px solid grey;
+            border-left: none;
+        }
     }
 
+
     &.hide {
+        animation: hidePage .35s 1 ease-in-out forwards;
+
+        form {
+            display: none;
+        } 
+    }
+}
+
+@keyframes hidePage {
+    from {
+        background-color: rgba(19, 24, 27, .95);
+        z-index: 1;
+    }
+    to {
+        background-color: rgba(19, 24, 27, 0);
         z-index: 0;
     }
 }
 
 @media only screen and (max-width: 550px) {
-    .container {
-        height: 95vh !important;
+    .Landing .container {
+        height: 95vh;
+    }
+}
+
+@media only screen and (max-width: 915px) {
+    .Landing .container {
+        padding-left: 3rem;
+        padding-right: 3rem;
     }
 }

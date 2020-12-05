@@ -1,0 +1,15 @@
+.Tab {
+  z-index: 4;
+  width: 50vw;
+  height: 100%;
+  border: 1px solid #37474f;
+  font-size: .75em;
+
+  p {
+    margin: .5rem auto;
+  }
+
+  &.active {
+    background-color: #039be5;
+  }
+}

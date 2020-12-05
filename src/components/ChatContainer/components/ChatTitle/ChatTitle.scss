@@ -1,0 +1,16 @@
+.ChatTitle {
+    position: absolute;
+    top: 0;
+
+    width: 100%;
+    height: 120px;
+    
+    background-color: #263238;
+    border-bottom: 2px solid #37474f;
+
+    font-size: .75rem;
+
+    p {
+        margin: .75em auto;
+    }
+}

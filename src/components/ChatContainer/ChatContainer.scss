@@ -7,84 +7,34 @@
     bottom: 0;
 
     z-index: 1;
+}
 
-    &.left {
-        left: 0
-    }
-    &.right {
-        right: 0
-    }
+.user-icon {
+    text-align: center;
+    margin:auto;
+    
+    border-radius: 50%;
+    background-color: lightgray;
+  
+    &.is-xl {
+        width: 39px;
 
-    .chat-title {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 120px;
-        
-        background-color: #263238;
-        border-bottom: 2px solid #37474f;
-
-        font-size: .75rem;
-
-        p {
-            margin: .75em auto;
+        .fa-user {
+            font-size: x-large;
         }
     }
-  
-    .chat-body {
-        background-color: #1e272c;
-        position: absolute;
-        top: 120px;
-        bottom: 60px;
-        left: 0;
-        right: 0;
-        overflow: scroll;
+    
+    &.is-xxl {
+        padding: 3px;
+        width: 48px;
 
-        padding: .75rem;
-    }
-  
-    .chat-input {
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 60px;
-        background-color: #263238;
-
-        border-top: 2px solid #37474f; 
-
-        .input-group {
-            padding: 10px;
-            height: 100%;
-            
-            input {
-                height: 100%;
-                // flex-grow: 1;
-                font-size: 18px;
-
-                background-color: #37474f;
-                color: white;
-
-                border: 1px solid #37474f; 
-
-                border-radius: 2rem;
-                border-bottom-right-radius: 0px;
-                border-top-right-radius: 0px;
-            }
-        
-            button {
-                padding-right: 1.25rem;
-                background-color: #039be5;
-                color: white;
-                font-size: 16px;
-                z-index: 0;
-
-                border-radius: 2rem;
-                border-bottom-left-radius: 0px;
-                border-top-left-radius: 0px;
-            }
+        .fa-user {
+            font-size: xx-large;
         }
+    }
+    
+    .fa-user {
+        margin: 5px;  
     }
 }
 
@@ -95,8 +45,7 @@
 
         &.tab-active {
             width: 100vw;
-
-            z-index: 9;
+            z-index: 2;
         }
     }
 }

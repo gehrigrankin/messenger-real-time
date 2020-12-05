@@ -1,0 +1,108 @@
+.Message {
+    position: relative;
+
+    .text {
+        font-size: 1.25rem;
+        margin: 4px;
+        padding: 6px 12px;
+        max-width: 60%;
+        border-radius: 20px;
+
+        word-wrap: break-word;
+    }
+
+    &.sent {
+        text-align: right;
+        animation: messageIn .35s 1 ease-out forwards;
+
+        .text {
+            display:inline-block;
+            text-align: left;
+           
+            background-color: #039be5;
+            border-bottom-right-radius: 0px;
+
+            &.same-user {
+                border-top-right-radius: 0;
+            }
+        }
+    }
+
+    &.recieved {
+        text-align: left;
+        animation: messageOut .35s 1 ease-out forwards;
+
+        .text {
+            display:inline-block;
+            margin-left: 52px;
+
+            background-color: #78909c;
+            border-bottom-left-radius: 0px;
+
+            &.same-user {
+                border-top-left-radius: 0;
+            }
+        }
+
+        .user-icon {
+            position: absolute;
+            bottom: 0;
+        }
+    }
+
+    &.is-typing .text{
+        height: 30px;
+
+        span {
+            height: 12px;
+            width: 12px;
+
+            float: left;
+            margin: 3px 1px;
+
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.4;
+
+            @for $i from 1 through 3 {
+                &:nth-of-type(#{$i}) {
+                    animation: 1s blink infinite ($i * .2s);
+                }
+            }
+        } 
+    }
+}
+
+@keyframes messageIn {
+    from {
+        opacity: 0;
+        margin-right: -25px;
+    }
+    to {
+        opacity: 100%;
+        margin-right: 0;
+    }
+}
+
+@keyframes messageOut {
+    from {
+        opacity: 0;
+        margin-left: -25px;
+    }
+    to {
+        opacity: 100%;
+        margin-left: 0;
+    }
+}
+
+@keyframes blink {
+    50% {
+      opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .text {
+        max-width: 65% !important;
+    }
+}

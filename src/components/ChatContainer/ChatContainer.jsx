@@ -1,97 +1,92 @@
 import React, { useState, useEffect } from 'react';
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
-  Button
-} from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPaperPlane, faUser } from '@fortawesome/free-solid-svg-icons'
+import { animateScroll } from 'react-scroll';
 
-import LandingContainer from '../LandingContainer'
-import Message from '../Message';
+import LandingContainer from '../LandingContainer';
+
+import ChatTitle from './components/ChatTitle';
+import ChatBody from './components/ChatBody';
+import ChatInput from './components/ChatInput';
 
 import './ChatContainer.scss';
 
 const ChatContainer = (props) => {
-  const [input, setInput] = useState('');
-  const [nameInput, setNameInput] = useState('');
-  const [user, setUser] = useState({
-    name: '',
-    uuid: ''
-  });
+    const [nameInput, setNameInput] = useState('');
+    const [user, setUser] = useState({
+        name: '',
+        uuid: ''
+    });
 
-  useEffect(() => {
-    if(user.name) {
-      props.addUser([...props.users, user])
+    const { addUser, users, position, messages } = props;
+
+    useEffect(() => {
+        if (user.name) {
+            user.position = position;
+            addUser([...users, user])
+        }
+        // linter wants to add users to dependencies
+        // but it breaks code
+        // eslint-disable-next-line
+    }, [user, addUser, position]);
+
+    useEffect(() => {
+        // Scroll to bottom of ChatBody after new message
+        animateScroll.scrollToBottom({
+            containerId: "chat-body-" + position,
+            smooth: true,
+            duration: 200
+        });
+    }, [messages, position]);
+
+    const handleNameInput = e => {
+        setNameInput(e.target.value);
     }
-  }, [user])
 
-  const sendMessage = () => {
-    props.sendMessage(input, user)
+    const isTabOpen = () => {
+        return props.activeTab === position ? 'tab-active' : '';
+    }
 
-    setInput('');
-  }
+    const sendMessage = message => {
+        props.sendMessage(message, user);
+    }
 
-  const handleNameInput = e => {
-    setNameInput(e.target.value)
-  }
+    const isTyping = () => {
+        props.setIsTyping({ user });
+    }
 
-  const isTabOpen = () => {
-    return props.activeTab === props.position ? 'tab-active' : ''
-  }
+    const isntTyping = () => {
+        props.setIsTyping({ user: '' });
+    }
 
-  const chatWith = props.users.find(person => person.uuid !== user.uuid);
+    const chatWith = users.find(person => person.uuid !== user.uuid);
 
-  return (
-    <div className={`ChatContainer ${props.position} ${isTabOpen()}`}>
-      <LandingContainer
-        handleNameInput={handleNameInput}
-        nameInput={nameInput}
-        user={user}
-        setUser={setUser}
-        users={props.users}
-      />
-      <div className="chat-title">
-        {chatWith ? (
-          <div>
-            <p>Chatting with</p>
-            <div className="user-icon is-xxl">
-              <FontAwesomeIcon icon={faUser} />
-            </div>
-            <p>{chatWith.name}</p>
-          </div>
-        ) : null}
-      </div>
-      <div className="chat-body">
-        {props.messages.map((message, idx) => (
-          <Message
-            key={idx}
-            message={message}
-            user={user}
-          />
-        ))}
-      </div>
-      <div className="chat-input">
-        <InputGroup>
-          <Input
-            value={input}
-            placeholder="Start a message"
-            onChange={e => setInput(e.target.value)}
-          />
-          <InputGroupAddon addonType="append">
-            <Button onClick={e => {
-              e.preventDefault();
-              sendMessage(input);
-            }} color="primary">
-              <FontAwesomeIcon icon={faPaperPlane} />
-            </Button>
-          </InputGroupAddon>
-        </InputGroup>
-      </div>
-    </div>
-  )
+    return (
+        <div
+            className={`ChatContainer ${isTabOpen()}`}
+            style={{[position]: 0}}
+        >
+            <LandingContainer
+                handleNameInput={handleNameInput}
+                nameInput={nameInput}
+                user={user}
+                setUser={setUser}
+                users={users}
+            />
+            <ChatTitle
+                chatWith={chatWith}
+            />
+            <ChatBody
+                position={position}
+                messages={messages}
+                user={user}
+                isTyping={props.isTyping}
+            />
+            <ChatInput
+                sendMessage={sendMessage}
+                isTyping={isTyping}
+                isntTyping={isntTyping}
+            />
+        </div>
+    )
 }
 
 export default ChatContainer;
