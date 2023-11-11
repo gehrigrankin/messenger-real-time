@@ -8,10 +8,16 @@
     overflow: scroll;
     overflow-x: hidden;
     
-    ::-webkit-scrollbar {
-        display: none;
-    }
+    
     
     padding: .75rem;
     background-color: #1e272c;
+}
+
+.ChatBody::-webkit-scrollbar {
+    display: none;
+}
+
+#chat-body-left {
+    padding-right: 1.5rem;
 }
